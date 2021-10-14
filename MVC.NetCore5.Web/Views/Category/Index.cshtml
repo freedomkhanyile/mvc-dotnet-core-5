@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Category>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h1 class="text-primary">Categories List</h1>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-success">
+                <i class="fas fa-plus"></i> &nbsp; Create New Category
+            </a>
+
+        </div>
+    </div>
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    @*<th scope="col">#</th>*@
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Display Order</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @*<th scope="row">2</th>*@
+                        <td width="50%">@item.Name</td>
+                        <td width="30%">@item.DisplayOrder</td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Category" asp-route-Id="@item.Id" asp-action="Edit" class="btn btn-info mx-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-controller="Category" asp-route-Id="@item.Id" asp-action="Delete" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="row p-3">
+            <p>No categories exists.</p>
+        </div>
+    }
+
+</div>

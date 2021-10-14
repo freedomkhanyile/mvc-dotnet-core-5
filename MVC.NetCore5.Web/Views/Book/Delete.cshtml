@@ -1,0 +1,47 @@
+﻿@model Book
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="form-group  pl-3">
+            <h1 class="text-primary">
+                Delet Book?
+            </h1>
+        </div>
+        <div class="pl-3">
+            <div class="col-6">
+                <div class="form-group row">
+                    <input type="text" asp-for="Name" disabled class="form-control" id="inputName" aria-describedby="nameHelp">
+                </div>
+                <div class="form-group row">
+                    <input type="text" asp-for="ISBN" disabled class="form-control" id="inputISBN" aria-describedby="iSBNHelp">
+                </div>
+                <div class="form-group row">
+                    <input type="text" asp-for="Author" disabled class="form-control" id="inputAuthor" aria-describedby="authorHelp">
+                </div>
+                <div class="form-group row">
+                    <input type="number" asp-for="Year" disabled class="form-control" id="inputYear" aria-describedby="yearHelp">
+                </div>
+                <div class="form-group row">
+                    <div class="row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Delete">
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn bg-transparent" style="color: #bdc3c7">
+                                Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
