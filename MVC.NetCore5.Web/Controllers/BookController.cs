@@ -1,23 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MVC.NetCore5.Web.Data;
-using MVC.NetCore5.Web.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVC.NetCore5.Web.Data;
+using MVC.NetCore5.Web.Data.Extensions;
+using MVC.NetCore5.Web.Data.Models;
+using MVC.NetCore5.Web.Data.Services.Contracts;
+using MVC.NetCore5.Web.Data.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace MVC.NetCore5.Web.Controllers
 {
     public class BookController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public BookController(ApplicationDbContext context)
+        private readonly IBookService _service;
+
+        private readonly ILogger<BookController> _logger;
+
+        public BookController(
+            IBookService service,
+            ILogger<BookController> logger = null
+        )
         {
-            _context = context;
+            _service = service;
+            _logger = logger;
         }
+
         public IActionResult Index()
         {
-            IEnumerable<Book> books = _context.Book;
+            var books = _service.GetAll();
+            _logger
+                .LogInformation($"{books.ToList().Count} returned successfully!");
             return View(books);
         }
 
@@ -29,48 +43,56 @@ namespace MVC.NetCore5.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Book model)
+        public async Task<IActionResult> Create(CreateBookViewModel model)
         {
-            _context.Book.Add(model);
-            _context.SaveChanges();
+            var book = await _service.CreateBook(model);
+            _logger
+                .LogInformation($"Book with name :{book.Name} was created successfully");
             return RedirectToAction("Index");
         }
 
         // GET - EDIT
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0) { return NotFound(); }
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-            var itemToUpdate = _context.Book.Find(id);
-
+            var itemToUpdate = _service.GetById((int) id);
             if (itemToUpdate == null)
             {
                 return NotFound();
             }
 
-            return View(itemToUpdate);
+            return View(itemToUpdate.ToUpdateViewModel());
         }
 
         // POST EDIT
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Book model)
+        public async Task<IActionResult> Edit(UpdateBookViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Book.Update(model);
-                _context.SaveChanges();
+                var book = await _service.UpdateBook(model.Id, model);
+                _logger
+                    .LogInformation($"Book with name :{book.Name} was updated successfully");
+
                 return RedirectToAction("Index");
             }
             return View(model);
         }
 
-        // GET - DELETE
+        // // GET - DELETE
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0) { return NotFound(); }
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-            var itemToDelete = _context.Book.Find(id);
+            var itemToDelete = _service.GetById((int) id);
 
             if (itemToDelete == null)
             {
@@ -80,21 +102,19 @@ namespace MVC.NetCore5.Web.Controllers
             return View(itemToDelete);
         }
 
-        // POST DELETE
+        // // POST DELETE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
+        public async Task<IActionResult> DeletePost(int id)
         {
-            var itemToDelete = _context.Book.Find(id);
-
-            if (itemToDelete == null)
+            var isDeleted = await _service.DeleteBook(id);
+            if (isDeleted)
             {
-                return NotFound();
+                return RedirectToAction("Index");
+            } else {
+                var itemToDelete = _service.GetById(id);
+                return View(itemToDelete);
             }
-            
-            _context.Book.Remove(itemToDelete);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
         }
     }
 }
