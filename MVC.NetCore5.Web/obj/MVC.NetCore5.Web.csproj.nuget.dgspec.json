@@ -1,32 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Freedom.Khanyile\\source\\repos\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj": {}
+    "C:\\Users\\Freedom.Khanyile\\source\\DotnetCore\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Freedom.Khanyile\\source\\repos\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj": {
+    "C:\\Users\\Freedom.Khanyile\\source\\DotnetCore\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Freedom.Khanyile\\source\\repos\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj",
+        "projectUniqueName": "C:\\Users\\Freedom.Khanyile\\source\\DotnetCore\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj",
         "projectName": "MVC.NetCore5.Web",
-        "projectPath": "C:\\Users\\Freedom.Khanyile\\source\\repos\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj",
+        "projectPath": "C:\\Users\\Freedom.Khanyile\\source\\DotnetCore\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\MVC.NetCore5.Web.csproj",
         "packagesPath": "C:\\Users\\Freedom.Khanyile\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Freedom.Khanyile\\source\\repos\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\obj\\",
+        "outputPath": "C:\\Users\\Freedom.Khanyile\\source\\DotnetCore\\mvc-dotnet-core-5\\MVC.NetCore5.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Freedom.Khanyile\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Freedom.Khanyile\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://192.168.242.52/nuget/betterlife": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -82,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
