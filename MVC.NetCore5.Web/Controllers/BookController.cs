@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC.NetCore5.Web.Data;
-using MVC.NetCore5.Web.Models;
+using MVC.NetCore5.Web.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

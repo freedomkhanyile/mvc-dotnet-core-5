@@ -1,0 +1,5 @@
+To Run migrations - Dotnet Core 5
+
+1. dotnet ef migrations add [migrationName]
+
+2. dotnet ef database update

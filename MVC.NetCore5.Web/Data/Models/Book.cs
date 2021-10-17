@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC.NetCore5.Web.Models
+namespace MVC.NetCore5.Web.Data.Models
 {
     public class Book
     {
@@ -25,5 +25,7 @@ namespace MVC.NetCore5.Web.Models
         [Required]
         [Range(1700, int.MaxValue, ErrorMessage = "Year must be greater than 1700's")]
         public string Year { get; set; }
+                
+        public virtual Category Category { get; set; }
     }
 }
